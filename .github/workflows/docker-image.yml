@@ -29,8 +29,8 @@ jobs:
       - name: Build and Push Backend Image
         uses: docker/build-push-action@v6
         with:
-          context: ./QUIZBUILDER-SPRINGBOOT
-          file: ./backend.Dockerfile
+          context: ./BACKEND/QUIZBUILDER-SPRINGBOOT
+          file: ./BACKEND/QUIZBUILDER-SPRINGBOOT/backend.Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/quizbuilder-backend:latest
 
@@ -38,7 +38,7 @@ jobs:
       - name: Build and Push Frontend Image
         uses: docker/build-push-action@v6
         with:
-          context: ./QUIZBUILDER-REACT
-          file: ./frontend.Dockerfile
+          context: ./FRONTEND/QUIZBUILDER-REACT
+          file: ./FRONTEND/QUIZBUILDER-REACT/frontend.Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/quizbuilder-frontend:latest
