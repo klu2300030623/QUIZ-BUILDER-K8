@@ -1,0 +1,52 @@
+services:
+  mysqldb:
+    image: mysql:8
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: docker
+      MYSQL_DATABASE: quizdb
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - springboot-mysql-net
+
+  backend:
+    build:
+      context: ./BACKEND/QUIZBUILDER-SPRINGBOOT
+      dockerfile: backend.Dockerfile
+    container_name: springboot
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysqldb
+    restart: on-failure
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/quizdb
+      SPRING_DATASOURCE_PASSWORD: docker
+    networks:
+      - springboot-mysql-net
+
+  frontend:
+    build:
+      context: ./FRONTEND/QUIZBUILDER-REACT
+      dockerfile: frontend.Dockerfile
+      args:
+        VITE_API_URL: http://localhost:8000
+    container_name: react
+    ports:
+      - "1900:80"
+    depends_on:
+      - backend
+    restart: on-failure
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    networks:
+      - springboot-mysql-net
+
+volumes:
+  mysql_data:
+
+networks:
+  springboot-mysql-net:

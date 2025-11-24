@@ -1,0 +1,103 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* allow wrapping if needed */
+  padding: 12px 20px; /* reduced padding */
+  background-color: darkblue;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  z-index: 1000;
+  box-sizing: border-box; /* ✅ important to avoid overflow */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Left side: logo + welcome text */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap; /* allow wrapping */
+}
+
+.navbar-left .logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-left .welcome-text {
+  font-size: 16px;
+  color: white;
+}
+
+/* Right side: links */
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap; /* ✅ wrap links instead of overflowing */
+}
+
+.navbar .nav-links li {
+  white-space: nowrap; /* keep buttons in one piece */
+}
+
+.navbar .nav-links li a.nav-button {
+  color: white;
+  text-decoration: none;
+  padding: 8px 14px; /* slightly smaller padding */
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  background-color: rgba(255, 255, 255, 0.15);
+  text-align: center;
+}
+
+/* Hover effect */
+.navbar .nav-links li a.nav-button:hover {
+  background-color: white;
+  color: #4f90ff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Logged-in welcome text */
+.navbar .nav-links li.welcome-text {
+  background: transparent;
+  color: #e0e7ff;
+  cursor: default;
+  padding: 0;
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 16px;
+  }
+
+  .navbar .nav-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .navbar-left .welcome-text {
+    display: none; /* optional: hide on small screens */
+  }
+}
+
+/* Space for fixed navbar */
+body {
+  padding-top: 64px; /* adjust according to navbar height */
+}
