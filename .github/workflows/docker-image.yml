@@ -35,6 +35,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./FRONTEND/QUIZBUILDER-REACT
-          file: ./FRONTEND/QUIZBUILDER-REACT/k8quiz-frontend.Dockerfile
+          file: ./FRONTEND/QUIZBUILDER-REACT/frontend.Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/k8quiz-frontend:latest
